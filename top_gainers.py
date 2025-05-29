@@ -6,11 +6,14 @@ st.set_page_config(page_title="F&O Top Gainers", layout="wide")
 
 @st.cache_data(ttl=1)  # Refresh every second
 def fetch_fno_gainers():
-    url = "https://www.nseindia.com/api/live-analysis-variations?index=top_gainers_fno"
-    headers = {
-        "User-Agent": "Mozilla/5.0",
-        "Accept-Language": "en-US,en;q=0.9"
-    }
+    # Dummy data fallback
+    return pd.DataFrame({
+        "Symbol": ["SBIN", "TATASTEEL", "HINDALCO"],
+        "LTP": [780.25, 142.60, 513.30],
+        "% Change": [3.2, 2.5, 1.8],
+        "Volume": [1200000, 850000, 670000],
+        "Prev Close": [755, 139, 504]
+    })
 
     session = requests.Session()
     session.get("https://www.nseindia.com", headers=headers)  # Set cookies
